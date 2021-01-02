@@ -31,6 +31,20 @@ if (isset($_GET['action'])){
       echo 'Ocurrió un error';
     }
   }
-
+  if ($action=='guardar'){
+   $info=json_decode($_POST['info'],true);
+   
+  
+    foreach ($info as $fila){
+      //echo $fila[0].' '.$fila[1].'<br>';
+      $id=$fila[0];
+      $cantidad=$fila[2];
+      $precio=$fila[3];
+      $total=$fila[4];
+      //actualizar
+      $upd=mysqli_query($con,"UPDATE detalle_factura SET cantidad='$cantidad', precio='$precio', total='$total' WHERE id='$id'");
+    }
+    echo 'Datos actualizados';
+  }
 }
 ?>

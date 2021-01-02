@@ -15,7 +15,18 @@ $(document).ready(function(){
 var boton=document.getElementById('save');
 boton.addEventListener('click',guardar);
 function guardar(){
-   console.log(JSON.stringify({data: hot.getData()}));
+   var todo=JSON.stringify( hot.getData());
+   console.log(todo);
+  $.ajax({
+    url: 'api.php?action=guardar',
+    method: 'POST',
+    data: {
+      info: todo
+    },
+    success: function(resp){
+      alert(resp);
+    }
+  });
 }
 
 function mostrar(datos){
